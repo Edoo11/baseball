@@ -45,8 +45,7 @@ class View(ft.UserControl):
         self._page.controls.append(row2)
         self._page.controls.append(row3)
 
-        for i in range(0,200):
-            self._txtOutSquadre.controls.append(ft.Text(f"Squadra {i}"))
+
 
         self._txt_result = ft.ListView(expand=1, spacing=10, padding=20, auto_scroll=True)
         self._page.controls.append(ft.Container(self._txt_result, bgcolor="#deeded", height=350))

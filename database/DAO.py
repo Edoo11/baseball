@@ -48,3 +48,26 @@ where t.`year` >= 1980"""
         conn.close()
 
         return ris
+
+    @staticmethod
+    def getSalariTeam(anno):
+        conn = DBConnect.get_connection()
+        cursor=conn.cursor(dictionary=True)
+
+        ris=[]
+        query="""select s.`year` as y , s.teamID as idT , sum(s.salary) as sal
+                    from salaries s
+                    where s. `year` = %s 
+                    group by s.`year` , s.teamID 
+                    """
+
+        cursor.execute(query,(anno,))
+
+        for row in cursor.fetchall():
+            ris.append((row["y"],row["idT"],row["sal"]))
+
+
+        cursor.close()
+        conn.close()
+
+        return ris
